@@ -1,0 +1,1 @@
+Exercise 6 not run: the full AirfRANS dataset was not found at /path/to/AirfRANS/Dataset. Download it (Part A, DOWNLOAD_DATASET=True) and re-run this cell.

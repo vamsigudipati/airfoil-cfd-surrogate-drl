@@ -1,0 +1,4 @@
+actuators,controllability_rank,required_rank,controllability_condition,direct_authority_rank(B_reduced),lqr_design
+2,3,6,3.711623844005414e+17,2,failed
+3,5,6,1.0937235565233606e+16,3,failed
+5,6,6,58.031896222795666,4,"ok, closed-loop radius 0.814"

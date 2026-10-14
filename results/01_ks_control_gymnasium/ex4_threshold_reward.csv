@@ -1,0 +1,3 @@
+configuration,mean_cost,std_cost,mean_effort_cost,mean_final_energy,success_rate,returned_to_chaos_rate,fraction_of_time_below_threshold,mean_u2_last_80_steps
+main reward (drive to zero),34.69161722454056,3.2253094462861296,5.184715473826975,0.05570567618124187,0.35,0.0,0.7581249999999999,0.10253705
+threshold reward,47.71040546439588,6.465706331783486,5.6385457701236,0.07553341556340457,0.0,0.0,0.4779166666666666,0.1502989
