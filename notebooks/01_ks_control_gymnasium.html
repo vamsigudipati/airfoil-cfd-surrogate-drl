@@ -7803,7 +7803,7 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Stage-1-%E2%80%94-Control-of-a-chaotic-field:-the-method">Stage 1 — Control of a chaotic field: the method<a class="anchor-link" href="#Stage-1-%E2%80%94-Control-of-a-chaotic-field:-the-method">¶</a></h1><p><strong>Vamsi Gudipati</strong></p>
-<p>This notebook sets up the method that the whole project uses. The forced Kuramoto–Sivashinsky equation, a one-dimensional field with spatiotemporal chaos, is wrapped as a Gymnasium environment with a few localised actuators, and I train PPO, SAC and TD3 agents from Stable-Baselines3 to drive the field towards its unstable zero state. The notebook compares the agents with no control and with a linear-quadratic regulator on unseen chaotic states, and I added a training animation, eight exercises (domain length, fewer actuators, limited sensing, reward shaping, actuator saturation, robustness, a model-predictive baseline and Lyapunov growth) and a scoring of the three agents trained elsewhere.</p>
+<p>This notebook sets up the method that the whole project uses. The forced Kuramoto–Sivashinsky equation, a one-dimensional field with spatiotemporal chaos, is wrapped as a Gymnasium environment with a few localised actuators, and I train PPO, SAC and TD3 agents from Stable-Baselines3 to drive the field towards its unstable zero state. The notebook compares the agents with no control and with a linear-quadratic regulator on unseen chaotic states, and I added a training animation, eight experiments (domain length, fewer actuators, limited sensing, reward shaping, actuator saturation, robustness, a model-predictive baseline and Lyapunov growth) and a scoring of the three agents trained elsewhere.</p>
 <p>Cell numbers quoted inside this notebook count the first cell below this header as cell 0.</p>
 <p>Portfolio page: <a href="https://vamsigudipati.github.io/airfoil-cfd-surrogate-drl.html">https://vamsigudipati.github.io/airfoil-cfd-surrogate-drl.html</a></p>
 </div>
@@ -43802,31 +43802,31 @@ $$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="13.-Exercises">13. Exercises<a class="anchor-link" href="#13.-Exercises">¶</a></h1><h2 id="Exercise-1-%E2%80%94-Domain-length-and-route-to-chaos">Exercise 1 — Domain length and route to chaos<a class="anchor-link" href="#Exercise-1-%E2%80%94-Domain-length-and-route-to-chaos">¶</a></h2><p>Repeat the uncontrolled simulation for several domain lengths, for example
+<h1 id="13.-Experiments">13. Experiments<a class="anchor-link" href="#13.-Experiments">¶</a></h1><h2 id="Experiment-1-%E2%80%94-Domain-length-and-route-to-chaos">Experiment 1 — Domain length and route to chaos<a class="anchor-link" href="#Experiment-1-%E2%80%94-Domain-length-and-route-to-chaos">¶</a></h2><p>Repeat the uncontrolled simulation for several domain lengths, for example
 $\ell=12$, $18$, $22$ and $30$. Count the linearly unstable Fourier modes and
 compare the resulting space–time diagrams. At what point does irregular
 behavior become evident?</p>
-<h2 id="Exercise-2-%E2%80%94-Fewer-actuators">Exercise 2 — Fewer actuators<a class="anchor-link" href="#Exercise-2-%E2%80%94-Fewer-actuators">¶</a></h2><p>Repeat the control experiment with two or three actuators. Check the
+<h2 id="Experiment-2-%E2%80%94-Fewer-actuators">Experiment 2 — Fewer actuators<a class="anchor-link" href="#Experiment-2-%E2%80%94-Fewer-actuators">¶</a></h2><p>Repeat the control experiment with two or three actuators. Check the
 controllability of the linearized unstable subspace and compare the success
 rate on chaotic initial conditions. Is poor performance caused by learning or
 by insufficient actuation authority?</p>
-<h2 id="Exercise-3-%E2%80%94-Sensor-limited-control">Exercise 3 — Sensor-limited control<a class="anchor-link" href="#Exercise-3-%E2%80%94-Sensor-limited-control">¶</a></h2><p>Replace the full state supplied to the DRL policy with values at a small number of
+<h2 id="Experiment-3-%E2%80%94-Sensor-limited-control">Experiment 3 — Sensor-limited control<a class="anchor-link" href="#Experiment-3-%E2%80%94-Sensor-limited-control">¶</a></h2><p>Replace the full state supplied to the DRL policy with values at a small number of
 sensor locations. Compare uniform sensors with sensors colocated with the
 actuators. A recurrent policy can then be introduced because one instantaneous
 partial observation need not be Markovian.</p>
-<h2 id="Exercise-4-%E2%80%94-Energy-reduction-without-complete-relaminarization">Exercise 4 — Energy reduction without complete relaminarization<a class="anchor-link" href="#Exercise-4-%E2%80%94-Energy-reduction-without-complete-relaminarization">¶</a></h2><p>Modify the reward so that the objective is to keep the energy below a chosen
+<h2 id="Experiment-4-%E2%80%94-Energy-reduction-without-complete-relaminarization">Experiment 4 — Energy reduction without complete relaminarization<a class="anchor-link" href="#Experiment-4-%E2%80%94-Energy-reduction-without-complete-relaminarization">¶</a></h2><p>Modify the reward so that the objective is to keep the energy below a chosen
 threshold rather than drive the field all the way to zero. Does this reduce
 the required control effort?</p>
-<h2 id="Exercise-5-%E2%80%94-Actuator-saturation-and-failures">Exercise 5 — Actuator saturation and failures<a class="anchor-link" href="#Exercise-5-%E2%80%94-Actuator-saturation-and-failures">¶</a></h2><p>Reduce the action bounds and test the loss of one actuator after training.
+<h2 id="Experiment-5-%E2%80%94-Actuator-saturation-and-failures">Experiment 5 — Actuator saturation and failures<a class="anchor-link" href="#Experiment-5-%E2%80%94-Actuator-saturation-and-failures">¶</a></h2><p>Reduce the action bounds and test the loss of one actuator after training.
 Report not just average cost but also the fraction of trajectories that return
 to a chaotic state.</p>
-<h2 id="Exercise-6-%E2%80%94-Robustness-to-model-parameters">Exercise 6 — Robustness to model parameters<a class="anchor-link" href="#Exercise-6-%E2%80%94-Robustness-to-model-parameters">¶</a></h2><p>Train on one domain length or coefficient set and test on nearby values.
+<h2 id="Experiment-6-%E2%80%94-Robustness-to-model-parameters">Experiment 6 — Robustness to model parameters<a class="anchor-link" href="#Experiment-6-%E2%80%94-Robustness-to-model-parameters">¶</a></h2><p>Train on one domain length or coefficient set and test on nearby values.
 Alternatively, randomize those parameters during training. Determine whether
 robustness improves and quantify the nominal performance sacrificed.</p>
-<h2 id="Exercise-7-%E2%80%94-Compare-with-nonlinear-model-predictive-control">Exercise 7 — Compare with nonlinear model predictive control<a class="anchor-link" href="#Exercise-7-%E2%80%94-Compare-with-nonlinear-model-predictive-control">¶</a></h2><p>Construct a short-horizon nonlinear MPC controller using the same ETDRK4
+<h2 id="Experiment-7-%E2%80%94-Compare-with-nonlinear-model-predictive-control">Experiment 7 — Compare with nonlinear model predictive control<a class="anchor-link" href="#Experiment-7-%E2%80%94-Compare-with-nonlinear-model-predictive-control">¶</a></h2><p>Construct a short-horizon nonlinear MPC controller using the same ETDRK4
 model. Compare stabilization, online computational cost and constraint
 handling against LQR and DRL policy–critic.</p>
-<h2 id="Exercise-8-%E2%80%94-Lyapunov-sensitivity">Exercise 8 — Lyapunov sensitivity<a class="anchor-link" href="#Exercise-8-%E2%80%94-Lyapunov-sensitivity">¶</a></h2><p>Start two uncontrolled simulations from states separated by a tiny
+<h2 id="Experiment-8-%E2%80%94-Lyapunov-sensitivity">Experiment 8 — Lyapunov sensitivity<a class="anchor-link" href="#Experiment-8-%E2%80%94-Lyapunov-sensitivity">¶</a></h2><p>Start two uncontrolled simulations from states separated by a tiny
 perturbation and plot the norm of their difference. Repeat under each
 controller. Explain why trajectory divergence alone does not imply that the
 controlled statistical objective has failed.</p>
@@ -43840,7 +43840,7 @@ controlled statistical objective has failed.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="14.-Exercises-%E2%80%94-executed">14. Exercises — executed<a class="anchor-link" href="#14.-Exercises-%E2%80%94-executed">¶</a></h1><p>Each exercise below is run with the same physics, solver and PPO settings as the main experiment unless the exercise asks for a change. Every trained model is saved under <code>trained_models/exercises/</code>, and every table and figure is saved under <code>exercise_results/</code>.</p>
+<h1 id="14.-Experiments-%E2%80%94-executed">14. Experiments — executed<a class="anchor-link" href="#14.-Experiments-%E2%80%94-executed">¶</a></h1><p>Each experiment below is run with the same physics, solver and PPO settings as the main experiment unless the experiment asks for a change. Every trained model is saved under <code>trained_models/exercises/</code>, and every table and figure is saved under <code>exercise_results/</code>.</p>
 <p>Conventions used throughout:</p>
 <ul>
 <li><strong>Cost</strong> = $\sum_k \left[\tfrac1N\lVert s_{k+1}\rVert^2 + 0.01\lVert a_k\rVert^2\right]$, the same quantity as Section 10 (lower is better).</li>
@@ -44110,7 +44110,7 @@ controlled statistical objective has failed.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exercise-1-%E2%80%94-Domain-length-and-route-to-chaos-(executed)">Exercise 1 — Domain length and route to chaos <em>(executed)</em><a class="anchor-link" href="#Exercise-1-%E2%80%94-Domain-length-and-route-to-chaos-(executed)">¶</a></h2><p>For $\ell = 12, 18, 22, 30$ we count the linearly unstable Fourier pairs ($0&lt;k&lt;1$, i.e. $n &lt; \ell/2\pi$), simulate the uncontrolled system exactly as in Section 5, and estimate the largest finite-time Lyapunov exponent from two trajectories started $10^{-4}$ apart. A positive exponent and an energy that keeps fluctuating indicate chaos.</p>
+<h2 id="Experiment-1-%E2%80%94-Domain-length-and-route-to-chaos-(executed)">Experiment 1 — Domain length and route to chaos <em>(executed)</em><a class="anchor-link" href="#Experiment-1-%E2%80%94-Domain-length-and-route-to-chaos-(executed)">¶</a></h2><p>For $\ell = 12, 18, 22, 30$ we count the linearly unstable Fourier pairs ($0&lt;k&lt;1$, i.e. $n &lt; \ell/2\pi$), simulate the uncontrolled system exactly as in Section 5, and estimate the largest finite-time Lyapunov exponent from two trajectories started $10^{-4}$ apart. A positive exponent and an energy that keeps fluctuating indicate chaos.</p>
 </div>
 </div>
 </div>
@@ -44242,7 +44242,7 @@ controlled statistical objective has failed.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exercise-2-%E2%80%94-Fewer-actuators-(executed)">Exercise 2 — Fewer actuators <em>(executed)</em><a class="anchor-link" href="#Exercise-2-%E2%80%94-Fewer-actuators-(executed)">¶</a></h2><p>We repeat the experiment with 2 and 3 equally spaced actuators. First we check <strong>controllability</strong> of the linearised unstable subspace (rank of the controllability matrix $[B, AB, \dots, A^5B]$ and its conditioning). Then we design the local LQR, train PPO with the same budget, and compare success on the same unseen chaotic states. If the reduced system is controllable but PPO fails, the limitation is learning; if the controllability matrix is rank-deficient or badly conditioned, it is actuation authority.</p>
+<h2 id="Experiment-2-%E2%80%94-Fewer-actuators-(executed)">Experiment 2 — Fewer actuators <em>(executed)</em><a class="anchor-link" href="#Experiment-2-%E2%80%94-Fewer-actuators-(executed)">¶</a></h2><p>We repeat the experiment with 2 and 3 equally spaced actuators. First we check <strong>controllability</strong> of the linearised unstable subspace (rank of the controllability matrix $[B, AB, \dots, A^5B]$ and its conditioning). Then we design the local LQR, train PPO with the same budget, and compare success on the same unseen chaotic states. If the reduced system is controllable but PPO fails, the limitation is learning; if the controllability matrix is rank-deficient or badly conditioned, it is actuation authority.</p>
 </div>
 </div>
 </div>
@@ -44507,7 +44507,7 @@ loading ../models/01_ks_control_gymnasium/exercises/ex2_ppo_3_actuators.zip
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exercise-3-%E2%80%94-Sensor-limited-control-(executed)">Exercise 3 — Sensor-limited control <em>(executed)</em><a class="anchor-link" href="#Exercise-3-%E2%80%94-Sensor-limited-control-(executed)">¶</a></h2><p>The policy now sees only 5 point values of the field instead of all 64. We compare sensors <strong>colocated</strong> with the actuator centres against sensors at the <strong>midpoints</strong> between actuators. Because one instantaneous partial observation need not be Markovian, we also give the colocated policy a short memory by <strong>stacking the last 4 observations</strong> — a light-weight stand-in for a recurrent policy (a recurrent PPO would need the <code>sb3-contrib</code> package and a much longer budget).</p>
+<h2 id="Experiment-3-%E2%80%94-Sensor-limited-control-(executed)">Experiment 3 — Sensor-limited control <em>(executed)</em><a class="anchor-link" href="#Experiment-3-%E2%80%94-Sensor-limited-control-(executed)">¶</a></h2><p>The policy now sees only 5 point values of the field instead of all 64. We compare sensors <strong>colocated</strong> with the actuator centres against sensors at the <strong>midpoints</strong> between actuators. Because one instantaneous partial observation need not be Markovian, we also give the colocated policy a short memory by <strong>stacking the last 4 observations</strong> — a light-weight stand-in for a recurrent policy (a recurrent PPO would need the <code>sb3-contrib</code> package and a much longer budget).</p>
 </div>
 </div>
 </div>
@@ -44665,7 +44665,7 @@ loading ../models/01_ks_control_gymnasium/exercises/ex2_ppo_3_actuators.zip
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exercise-4-%E2%80%94-Energy-reduction-without-complete-relaminarisation-(executed)">Exercise 4 — Energy reduction without complete relaminarisation <em>(executed)</em><a class="anchor-link" href="#Exercise-4-%E2%80%94-Energy-reduction-without-complete-relaminarisation-(executed)">¶</a></h2><p>New reward: $r_k = -\left[\max\!\left(0,\ \tfrac1N\lVert s_{k+1}\rVert^2 - c\right) + \rho\lVert a_k\rVert^2\right]$, i.e. no penalty once the field is below a chosen level. We set $c$ to 10 % of the mean value of $\tfrac1N\lVert s\rVert^2$ on the training pool. The policy is then compared with the main policy on the <strong>original</strong> cost, on control effort, and on the fraction of time spent under the threshold.</p>
+<h2 id="Experiment-4-%E2%80%94-Energy-reduction-without-complete-relaminarisation-(executed)">Experiment 4 — Energy reduction without complete relaminarisation <em>(executed)</em><a class="anchor-link" href="#Experiment-4-%E2%80%94-Energy-reduction-without-complete-relaminarisation-(executed)">¶</a></h2><p>New reward: $r_k = -\left[\max\!\left(0,\ \tfrac1N\lVert s_{k+1}\rVert^2 - c\right) + \rho\lVert a_k\rVert^2\right]$, i.e. no penalty once the field is below a chosen level. We set $c$ to 10 % of the mean value of $\tfrac1N\lVert s\rVert^2$ on the training pool. The policy is then compared with the main policy on the <strong>original</strong> cost, on control effort, and on the fraction of time spent under the threshold.</p>
 </div>
 </div>
 </div>
@@ -44779,7 +44779,7 @@ loading ../models/01_ks_control_gymnasium/exercises/ex4_ppo_threshold_reward.zip
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exercise-5-%E2%80%94-Actuator-saturation-and-failures-(executed)">Exercise 5 — Actuator saturation and failures <em>(executed)</em><a class="anchor-link" href="#Exercise-5-%E2%80%94-Actuator-saturation-and-failures-(executed)">¶</a></h2><p>The <strong>trained main policy</strong> is tested, without retraining, (a) with tighter action bounds and (b) with one actuator failed (output forced to zero). Each test uses 50 unseen chaotic states and a horizon of 240 steps (three times the training horizon), so that a controller that only delays the return of chaos is caught.</p>
+<h2 id="Experiment-5-%E2%80%94-Actuator-saturation-and-failures-(executed)">Experiment 5 — Actuator saturation and failures <em>(executed)</em><a class="anchor-link" href="#Experiment-5-%E2%80%94-Actuator-saturation-and-failures-(executed)">¶</a></h2><p>The <strong>trained main policy</strong> is tested, without retraining, (a) with tighter action bounds and (b) with one actuator failed (output forced to zero). Each test uses 50 unseen chaotic states and a horizon of 240 steps (three times the training horizon), so that a controller that only delays the return of chaos is caught.</p>
 </div>
 </div>
 </div>
@@ -44960,7 +44960,7 @@ loading ../models/01_ks_control_gymnasium/exercises/ex4_ppo_threshold_reward.zip
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exercise-6-%E2%80%94-Robustness-to-model-parameters-(executed)">Exercise 6 — Robustness to model parameters <em>(executed)</em><a class="anchor-link" href="#Exercise-6-%E2%80%94-Robustness-to-model-parameters-(executed)">¶</a></h2><p>The main policy was trained at $\ell = 22$. We test it at $\ell = 20, 21, 23, 24$, using initial states from each system's own uncontrolled attractor. Then we train a second policy with the domain length <strong>randomised</strong> over $\{20,21,22,23,24\}$ at every reset, and measure both the robustness gained and the nominal performance ($\ell=22$) sacrificed.</p>
+<h2 id="Experiment-6-%E2%80%94-Robustness-to-model-parameters-(executed)">Experiment 6 — Robustness to model parameters <em>(executed)</em><a class="anchor-link" href="#Experiment-6-%E2%80%94-Robustness-to-model-parameters-(executed)">¶</a></h2><p>The main policy was trained at $\ell = 22$. We test it at $\ell = 20, 21, 23, 24$, using initial states from each system's own uncontrolled attractor. Then we train a second policy with the domain length <strong>randomised</strong> over $\{20,21,22,23,24\}$ at every reset, and measure both the robustness gained and the nominal performance ($\ell=22$) sacrificed.</p>
 </div>
 </div>
 </div>
@@ -45093,7 +45093,7 @@ loading ../models/01_ks_control_gymnasium/exercises/ex4_ppo_threshold_reward.zip
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exercise-7-%E2%80%94-Comparison-with-nonlinear-model-predictive-control-(executed)">Exercise 7 — Comparison with nonlinear model predictive control <em>(executed)</em><a class="anchor-link" href="#Exercise-7-%E2%80%94-Comparison-with-nonlinear-model-predictive-control-(executed)">¶</a></h2><p>A short-horizon nonlinear MPC uses the <strong>same ETDRK4 model</strong>. At each decision it optimises 4 future control intervals with <em>move blocking</em> (two action vectors, each held for 2 intervals: 10 decision variables), the same cost as the reward, and the actuator bounds as hard box constraints (L-BFGS-B). The first action is applied and the plan is shifted to warm-start the next decision. Because MPC is expensive online, 5 unseen states are used.</p>
+<h2 id="Experiment-7-%E2%80%94-Comparison-with-nonlinear-model-predictive-control-(executed)">Experiment 7 — Comparison with nonlinear model predictive control <em>(executed)</em><a class="anchor-link" href="#Experiment-7-%E2%80%94-Comparison-with-nonlinear-model-predictive-control-(executed)">¶</a></h2><p>A short-horizon nonlinear MPC uses the <strong>same ETDRK4 model</strong>. At each decision it optimises 4 future control intervals with <em>move blocking</em> (two action vectors, each held for 2 intervals: 10 decision variables), the same cost as the reward, and the actuator bounds as hard box constraints (L-BFGS-B). The first action is applied and the plan is shifted to warm-start the next decision. Because MPC is expensive online, 5 unseen states are used.</p>
 </div>
 </div>
 </div>
@@ -45248,7 +45248,7 @@ loading ../models/01_ks_control_gymnasium/exercises/ex4_ppo_threshold_reward.zip
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exercise-8-%E2%80%94-Lyapunov-sensitivity-(executed)">Exercise 8 — Lyapunov sensitivity <em>(executed)</em><a class="anchor-link" href="#Exercise-8-%E2%80%94-Lyapunov-sensitivity-(executed)">¶</a></h2><p>Two simulations start $10^{-4}$ apart (2-norm) from the same unseen chaotic state. We plot the norm of their difference under no control, local LQR and the trained policy, and fit the exponential growth rate while the separation is still small.</p>
+<h2 id="Experiment-8-%E2%80%94-Lyapunov-sensitivity-(executed)">Experiment 8 — Lyapunov sensitivity <em>(executed)</em><a class="anchor-link" href="#Experiment-8-%E2%80%94-Lyapunov-sensitivity-(executed)">¶</a></h2><p>Two simulations start $10^{-4}$ apart (2-norm) from the same unseen chaotic state. We plot the norm of their difference under no control, local LQR and the trained policy, and fit the exponential growth rate while the separation is still small.</p>
 </div>
 </div>
 </div>
@@ -45423,7 +45423,7 @@ loading ../models/01_ks_control_gymnasium/exercises/ex4_ppo_threshold_reward.zip
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Summary-of-the-executed-exercises">Summary of the executed exercises<a class="anchor-link" href="#Summary-of-the-executed-exercises">¶</a></h2><table>
+<h2 id="Summary-of-the-executed-experiments">Summary of the executed experiments<a class="anchor-link" href="#Summary-of-the-executed-experiments">¶</a></h2><table>
 <thead>
 <tr>
 <th>#</th>

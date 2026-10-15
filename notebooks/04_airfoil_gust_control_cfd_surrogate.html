@@ -7803,7 +7803,7 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Stage-4-%E2%80%94-The-flap-controller-trained-inside-the-surrogate">Stage 4 — The flap controller trained inside the surrogate<a class="anchor-link" href="#Stage-4-%E2%80%94-The-flap-controller-trained-inside-the-surrogate">¶</a></h1><p><strong>Vamsi Gudipati</strong></p>
-<p>This notebook puts the Stage 3 surrogate inside the Stage 2 control environment: the steady lift and drag at the equivalent angle of attack now come from the surrogate, and a SAC agent learns to hold the lift through gusts. I evaluate the controller on fixed and random gusts, added a NumPy forward pass of the surrogate for speed, a training animation, a flight animation and seven exercises (algorithm comparison, model fidelity, Reynolds-number and geometry sensitivity, reward weights, protecting the surrogate's training range, and robustness to the Reynolds number).</p>
+<p>This notebook puts the Stage 3 surrogate inside the Stage 2 control environment: the steady lift and drag at the equivalent angle of attack now come from the surrogate, and a SAC agent learns to hold the lift through gusts. I evaluate the controller on fixed and random gusts, added a NumPy forward pass of the surrogate for speed, a training animation, a flight animation and seven experiments (algorithm comparison, model fidelity, Reynolds-number and geometry sensitivity, reward weights, protecting the surrogate's training range, and robustness to the Reynolds number).</p>
 <p>Cell numbers quoted inside this notebook count the first cell below this header as cell 0.</p>
 <p>Portfolio page: <a href="https://vamsigudipati.github.io/airfoil-cfd-surrogate-drl.html">https://vamsigudipati.github.io/airfoil-cfd-surrogate-drl.html</a></p>
 </div>
@@ -8851,7 +8851,7 @@ Wrapping the env in a DummyVecEnv.
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="13.-Train-the-CFD-informed-controller">13. Train the CFD-informed controller<a class="anchor-link" href="#13.-Train-the-CFD-informed-controller">¶</a></h2><p>The agent now interacts with the surrogate thousands of times.</p>
-<p>A direct RANS solver would make this training loop impractical for a classroom exercise. The surrogate makes the environment inexpensive enough to use with DRL.</p>
+<p>A direct RANS solver would make this training loop impractical for a classroom experiment. The surrogate makes the environment inexpensive enough to use with DRL.</p>
 </div>
 </div>
 </div>
@@ -18176,7 +18176,7 @@ $$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="29.-Suggested-exercises">29. Suggested exercises<a class="anchor-link" href="#29.-Suggested-exercises">¶</a></h2><h3 id="Exercise-1-%E2%80%94-Algorithm-comparison">Exercise 1 — Algorithm comparison<a class="anchor-link" href="#Exercise-1-%E2%80%94-Algorithm-comparison">¶</a></h3><p>Train PPO, SAC, and TD3 using the same number of environment interactions. Compare:</p>
+<h2 id="29.-Suggested-experiments">29. Suggested experiments<a class="anchor-link" href="#29.-Suggested-experiments">¶</a></h2><h3 id="Experiment-1-%E2%80%94-Algorithm-comparison">Experiment 1 — Algorithm comparison<a class="anchor-link" href="#Experiment-1-%E2%80%94-Algorithm-comparison">¶</a></h3><p>Train PPO, SAC, and TD3 using the same number of environment interactions. Compare:</p>
 <ul>
 <li>lift RMSE,</li>
 <li>maximum flap angle,</li>
@@ -18184,12 +18184,12 @@ $$</p>
 <li>mean drag,</li>
 <li>episode return.</li>
 </ul>
-<h3 id="Exercise-2-%E2%80%94-Model-fidelity-comparison">Exercise 2 — Model-fidelity comparison<a class="anchor-link" href="#Exercise-2-%E2%80%94-Model-fidelity-comparison">¶</a></h3><p>Train one controller using the low-order model from Stage 2 and another using the AirfRANS surrogate. Evaluate both on the same gust.</p>
-<h3 id="Exercise-3-%E2%80%94-Reynolds-number-sensitivity">Exercise 3 — Reynolds-number sensitivity<a class="anchor-link" href="#Exercise-3-%E2%80%94-Reynolds-number-sensitivity">¶</a></h3><p>Evaluate the same policy at several Reynolds numbers within the surrogate database.</p>
-<h3 id="Exercise-4-%E2%80%94-Geometry-sensitivity">Exercise 4 — Geometry sensitivity<a class="anchor-link" href="#Exercise-4-%E2%80%94-Geometry-sensitivity">¶</a></h3><p>Test the policy on several NACA four-digit geometries.</p>
-<h3 id="Exercise-5-%E2%80%94-Reward-sensitivity">Exercise 5 — Reward sensitivity<a class="anchor-link" href="#Exercise-5-%E2%80%94-Reward-sensitivity">¶</a></h3><p>Change <code>drag_weight</code>, <code>effort_weight</code>, and <code>smoothness_weight</code>. Explain how the learned control strategy changes.</p>
-<h3 id="Exercise-6-%E2%80%94-Domain-protection">Exercise 6 — Domain protection<a class="anchor-link" href="#Exercise-6-%E2%80%94-Domain-protection">¶</a></h3><p>Add a penalty when the equivalent angle leaves the trusted surrogate range.</p>
-<h3 id="Exercise-7-%E2%80%94-Robust-training">Exercise 7 — Robust training<a class="anchor-link" href="#Exercise-7-%E2%80%94-Robust-training">¶</a></h3><p>Modify <code>reset()</code> so that Reynolds number is randomized at the beginning of every training episode.</p>
+<h3 id="Experiment-2-%E2%80%94-Model-fidelity-comparison">Experiment 2 — Model-fidelity comparison<a class="anchor-link" href="#Experiment-2-%E2%80%94-Model-fidelity-comparison">¶</a></h3><p>Train one controller using the low-order model from Stage 2 and another using the AirfRANS surrogate. Evaluate both on the same gust.</p>
+<h3 id="Experiment-3-%E2%80%94-Reynolds-number-sensitivity">Experiment 3 — Reynolds-number sensitivity<a class="anchor-link" href="#Experiment-3-%E2%80%94-Reynolds-number-sensitivity">¶</a></h3><p>Evaluate the same policy at several Reynolds numbers within the surrogate database.</p>
+<h3 id="Experiment-4-%E2%80%94-Geometry-sensitivity">Experiment 4 — Geometry sensitivity<a class="anchor-link" href="#Experiment-4-%E2%80%94-Geometry-sensitivity">¶</a></h3><p>Test the policy on several NACA four-digit geometries.</p>
+<h3 id="Experiment-5-%E2%80%94-Reward-sensitivity">Experiment 5 — Reward sensitivity<a class="anchor-link" href="#Experiment-5-%E2%80%94-Reward-sensitivity">¶</a></h3><p>Change <code>drag_weight</code>, <code>effort_weight</code>, and <code>smoothness_weight</code>. Explain how the learned control strategy changes.</p>
+<h3 id="Experiment-6-%E2%80%94-Domain-protection">Experiment 6 — Domain protection<a class="anchor-link" href="#Experiment-6-%E2%80%94-Domain-protection">¶</a></h3><p>Add a penalty when the equivalent angle leaves the trusted surrogate range.</p>
+<h3 id="Experiment-7-%E2%80%94-Robust-training">Experiment 7 — Robust training<a class="anchor-link" href="#Experiment-7-%E2%80%94-Robust-training">¶</a></h3><p>Modify <code>reset()</code> so that Reynolds number is randomized at the beginning of every training episode.</p>
 </div>
 </div>
 </div>
@@ -18200,7 +18200,7 @@ $$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="29b.-Suggested-exercises-%E2%80%94-executed">29b. Suggested exercises — executed<a class="anchor-link" href="#29b.-Suggested-exercises-%E2%80%94-executed">¶</a></h1><p>Every agent uses the algorithm settings of Section 12 (<code>SEED</code>, <code>TOTAL_TIMESTEPS</code>) and is saved under <code>trained_models/exercises/</code>; tables and figures go to <code>exercise_results/</code>.</p>
+<h1 id="29b.-Suggested-experiments-%E2%80%94-executed">29b. Suggested experiments — executed<a class="anchor-link" href="#29b.-Suggested-experiments-%E2%80%94-executed">¶</a></h1><p>Every agent uses the algorithm settings of Section 12 (<code>SEED</code>, <code>TOTAL_TIMESTEPS</code>) and is saved under <code>trained_models/exercises/</code>; tables and figures go to <code>exercise_results/</code>.</p>
 <p><strong>Evaluation suite</strong>: the fixed gust of Section 15 ($W_0=2.5$ m/s, $T_g=1.3$ s) and the four unseen gusts of Section 18. Reported: lift RMSE (per gust and mean), maximum and mean flap angle, mean drag, action roughness (mean $|a_t-a_{t-1}|$), the range of $\alpha_{\mathrm{eq}}$ visited, and the fraction of steps with $\alpha_{\mathrm{eq}}$ outside the angle range of the CFD training data (the "trusted range", read from <code>airfrans_4digit_coefficients.csv</code>).</p>
 <p>Results come from <strong>one training seed</strong> per configuration; small differences are within seed-to-seed noise.</p>
 </div>
@@ -18389,7 +18389,7 @@ $$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exercise-1-%E2%80%94-Algorithm-comparison-(executed)">Exercise 1 — Algorithm comparison <em>(executed)</em><a class="anchor-link" href="#Exercise-1-%E2%80%94-Algorithm-comparison-(executed)">¶</a></h2><p>PPO, SAC and TD3 with the same number of environment interactions, evaluated on the same suite.</p>
+<h2 id="Experiment-1-%E2%80%94-Algorithm-comparison-(executed)">Experiment 1 — Algorithm comparison <em>(executed)</em><a class="anchor-link" href="#Experiment-1-%E2%80%94-Algorithm-comparison-(executed)">¶</a></h2><p>PPO, SAC and TD3 with the same number of environment interactions, evaluated on the same suite.</p>
 </div>
 </div>
 </div>
@@ -18547,7 +18547,7 @@ loading ../models/04_airfoil_gust_control_cfd_surrogate/exercises/ex1_td3.zip
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exercise-2-%E2%80%94-Model-fidelity-comparison-(executed)">Exercise 2 — Model-fidelity comparison <em>(executed)</em><a class="anchor-link" href="#Exercise-2-%E2%80%94-Model-fidelity-comparison-(executed)">¶</a></h2><p>A second agent (same algorithm, seed and budget) is trained in an environment identical to <code>AirfoilSurrogateGymEnv</code> except that the steady aerodynamics come from the low-order law of Section 19 ($2\pi\alpha$ and the drag polar) — that is, the Stage 2 physics. Its target is the zero-gust equilibrium lift <strong>of its own model</strong>, exactly as <code>cl_target=None</code> does for the surrogate. Both agents are then evaluated in <strong>both</strong> environments on the same gusts: the diagonal of the table is "trained and tested on the same model", the off-diagonal is a model mismatch.</p>
+<h2 id="Experiment-2-%E2%80%94-Model-fidelity-comparison-(executed)">Experiment 2 — Model-fidelity comparison <em>(executed)</em><a class="anchor-link" href="#Experiment-2-%E2%80%94-Model-fidelity-comparison-(executed)">¶</a></h2><p>A second agent (same algorithm, seed and budget) is trained in an environment identical to <code>AirfoilSurrogateGymEnv</code> except that the steady aerodynamics come from the low-order law of Section 19 ($2\pi\alpha$ and the drag polar) — that is, the Stage 2 physics. Its target is the zero-gust equilibrium lift <strong>of its own model</strong>, exactly as <code>cl_target=None</code> does for the surrogate. Both agents are then evaluated in <strong>both</strong> environments on the same gusts: the diagonal of the table is "trained and tested on the same model", the off-diagonal is a model mismatch.</p>
 </div>
 </div>
 </div>
@@ -18735,7 +18735,7 @@ loading ../models/04_airfoil_gust_control_cfd_surrogate/exercises/ex1_td3.zip
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exercise-3-%E2%80%94-Reynolds-number-sensitivity-(executed)">Exercise 3 — Reynolds-number sensitivity <em>(executed)</em><a class="anchor-link" href="#Exercise-3-%E2%80%94-Reynolds-number-sensitivity-(executed)">¶</a></h2><p>The main policy (trained at $Re=4\times10^6$) is evaluated at nine Reynolds numbers covering the database range $2$–$6\times10^6$. For each $Re$ the target is that $Re$'s own zero-gust equilibrium, as in Section 25.</p>
+<h2 id="Experiment-3-%E2%80%94-Reynolds-number-sensitivity-(executed)">Experiment 3 — Reynolds-number sensitivity <em>(executed)</em><a class="anchor-link" href="#Experiment-3-%E2%80%94-Reynolds-number-sensitivity-(executed)">¶</a></h2><p>The main policy (trained at $Re=4\times10^6$) is evaluated at nine Reynolds numbers covering the database range $2$–$6\times10^6$. For each $Re$ the target is that $Re$'s own zero-gust equilibrium, as in Section 25.</p>
 </div>
 </div>
 </div>
@@ -18902,7 +18902,7 @@ loading ../models/04_airfoil_gust_control_cfd_surrogate/exercises/ex1_td3.zip
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exercise-4-%E2%80%94-Geometry-sensitivity-(executed)">Exercise 4 — Geometry sensitivity <em>(executed)</em><a class="anchor-link" href="#Exercise-4-%E2%80%94-Geometry-sensitivity-(executed)">¶</a></h2><p>The main policy (trained on the 2412-like section) is evaluated on eight NACA four-digit sections, all inside the parameter ranges of the CFD training data ($m\le7$, $p\le7$, $5\le t\le20$).</p>
+<h2 id="Experiment-4-%E2%80%94-Geometry-sensitivity-(executed)">Experiment 4 — Geometry sensitivity <em>(executed)</em><a class="anchor-link" href="#Experiment-4-%E2%80%94-Geometry-sensitivity-(executed)">¶</a></h2><p>The main policy (trained on the 2412-like section) is evaluated on eight NACA four-digit sections, all inside the parameter ranges of the CFD training data ($m\le7$, $p\le7$, $5\le t\le20$).</p>
 </div>
 </div>
 </div>
@@ -19059,7 +19059,7 @@ loading ../models/04_airfoil_gust_control_cfd_surrogate/exercises/ex1_td3.zip
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exercise-5-%E2%80%94-Reward-sensitivity-(executed)">Exercise 5 — Reward sensitivity <em>(executed)</em><a class="anchor-link" href="#Exercise-5-%E2%80%94-Reward-sensitivity-(executed)">¶</a></h2><p>One weight is raised at a time (the others keep their defaults): <code>drag_weight</code> 0.02 → 1.0, <code>effort_weight</code> 0.015 → 0.2, <code>smoothness_weight</code> 0.02 → 0.3.</p>
+<h2 id="Experiment-5-%E2%80%94-Reward-sensitivity-(executed)">Experiment 5 — Reward sensitivity <em>(executed)</em><a class="anchor-link" href="#Experiment-5-%E2%80%94-Reward-sensitivity-(executed)">¶</a></h2><p>One weight is raised at a time (the others keep their defaults): <code>drag_weight</code> 0.02 → 1.0, <code>effort_weight</code> 0.015 → 0.2, <code>smoothness_weight</code> 0.02 → 0.3.</p>
 </div>
 </div>
 </div>
@@ -19179,7 +19179,7 @@ loading ../models/04_airfoil_gust_control_cfd_surrogate/exercises/ex5_sac_smooth
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exercise-6-%E2%80%94-Domain-protection-(executed)">Exercise 6 — Domain protection <em>(executed)</em><a class="anchor-link" href="#Exercise-6-%E2%80%94-Domain-protection-(executed)">¶</a></h2><p>The trusted range is <strong>derived from the training database</strong> (minimum and maximum angle of the CFD training cases). The reward gets the extra term $-\lambda_{\mathrm{domain}}\left[\max(0,\alpha_{\mathrm{eq}}-\alpha_{\max})^2+\max(0,\alpha_{\min}-\alpha_{\mathrm{eq}})^2\right]$ with $\lambda_{\mathrm{domain}}=0.1\ \mathrm{deg^{-2}}$. To make the constraint matter, both agents compared here are trained with gusts up to $\pm6$ m/s (gust angles up to about $11^\circ$), and tested on gusts of $\pm5$ and $\pm6.5$ m/s.</p>
+<h2 id="Experiment-6-%E2%80%94-Domain-protection-(executed)">Experiment 6 — Domain protection <em>(executed)</em><a class="anchor-link" href="#Experiment-6-%E2%80%94-Domain-protection-(executed)">¶</a></h2><p>The trusted range is <strong>derived from the training database</strong> (minimum and maximum angle of the CFD training cases). The reward gets the extra term $-\lambda_{\mathrm{domain}}\left[\max(0,\alpha_{\mathrm{eq}}-\alpha_{\max})^2+\max(0,\alpha_{\min}-\alpha_{\mathrm{eq}})^2\right]$ with $\lambda_{\mathrm{domain}}=0.1\ \mathrm{deg^{-2}}$. To make the constraint matter, both agents compared here are trained with gusts up to $\pm6$ m/s (gust angles up to about $11^\circ$), and tested on gusts of $\pm5$ and $\pm6.5$ m/s.</p>
 </div>
 </div>
 </div>
@@ -19307,7 +19307,7 @@ loading ../models/04_airfoil_gust_control_cfd_surrogate/exercises/ex6_sac_wide_g
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exercise-7-%E2%80%94-Robust-training-with-a-randomised-Reynolds-number-(executed)">Exercise 7 — Robust training with a randomised Reynolds number <em>(executed)</em><a class="anchor-link" href="#Exercise-7-%E2%80%94-Robust-training-with-a-randomised-Reynolds-number-(executed)">¶</a></h2><p><code>reset()</code> now draws $Re\sim\mathcal U(2,6)\times10^6$ at the start of every training episode, and sets the target to that $Re$'s zero-gust equilibrium. The observation is unchanged (it does not contain $Re$), so the agent must find one policy that works across the range. Both agents are evaluated over the Reynolds sweep of Exercise 3.</p>
+<h2 id="Experiment-7-%E2%80%94-Robust-training-with-a-randomised-Reynolds-number-(executed)">Experiment 7 — Robust training with a randomised Reynolds number <em>(executed)</em><a class="anchor-link" href="#Experiment-7-%E2%80%94-Robust-training-with-a-randomised-Reynolds-number-(executed)">¶</a></h2><p><code>reset()</code> now draws $Re\sim\mathcal U(2,6)\times10^6$ at the start of every training episode, and sets the target to that $Re$'s zero-gust equilibrium. The observation is unchanged (it does not contain $Re$), so the agent must find one policy that works across the range. Both agents are evaluated over the Reynolds sweep of Experiment 3.</p>
 </div>
 </div>
 </div>
@@ -19558,7 +19558,7 @@ $$</p>
 \text{A DRL controller can only be as trustworthy as the environment used to train and validate it.}
 }
 $$</p>
-<p>The AirfRANS surrogate makes the aerodynamic model richer while keeping the computational cost low enough for repeated DRL interaction. At the same time, the exercise exposes new questions about surrogate validity, extrapolation, missing unsteady physics, and generalization.</p>
+<p>The AirfRANS surrogate makes the aerodynamic model richer while keeping the computational cost low enough for repeated DRL interaction. At the same time, the experiment exposes new questions about surrogate validity, extrapolation, missing unsteady physics, and generalization.</p>
 <p>These questions motivate the next step:</p>
 <p>$$
 \boxed{
@@ -19592,7 +19592,7 @@ $$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Summary-of-the-executed-exercises">Summary of the executed exercises<a class="anchor-link" href="#Summary-of-the-executed-exercises">¶</a></h2><table>
+<h2 id="Summary-of-the-executed-experiments">Summary of the executed experiments<a class="anchor-link" href="#Summary-of-the-executed-experiments">¶</a></h2><table>
 <thead>
 <tr>
 <th>#</th>

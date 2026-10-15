@@ -7803,7 +7803,7 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Stage-3-%E2%80%94-A-CFD-surrogate-from-AirfRANS">Stage 3 — A CFD surrogate from AirfRANS<a class="anchor-link" href="#Stage-3-%E2%80%94-A-CFD-surrogate-from-AirfRANS">¶</a></h1><p><strong>Vamsi Gudipati</strong></p>
-<p>This notebook replaces the thin-airfoil law with a neural-network surrogate trained on the AirfRANS coefficient table: a multilayer perceptron that maps the Reynolds number, the angle of attack and the three NACA four-digit parameters to the lift and drag coefficients. I train it with early stopping on the training split, score it on the test split, and added a training animation and seven exercises (architecture, dropping the Reynolds number, single-output models, scarce data, extrapolation in Reynolds number and angle, the five-digit family, and an ensemble), plus an evaluation of the surrogate file that the next stage uses.</p>
+<p>This notebook replaces the thin-airfoil law with a neural-network surrogate trained on the AirfRANS coefficient table: a multilayer perceptron that maps the Reynolds number, the angle of attack and the three NACA four-digit parameters to the lift and drag coefficients. I train it with early stopping on the training split, score it on the test split, and added a training animation and seven experiments (architecture, dropping the Reynolds number, single-output models, scarce data, extrapolation in Reynolds number and angle, the five-digit family, and an ensemble), plus an evaluation of the surrogate file that the next stage uses.</p>
 <p>Cell numbers quoted inside this notebook count the first cell below this header as cell 0.</p>
 <p>Portfolio page: <a href="https://vamsigudipati.github.io/airfoil-cfd-surrogate-drl.html">https://vamsigudipati.github.io/airfoil-cfd-surrogate-drl.html</a></p>
 </div>
@@ -14269,7 +14269,7 @@ $$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="29.-Suggested-exercises">29. Suggested exercises<a class="anchor-link" href="#29.-Suggested-exercises">¶</a></h2><ol>
+<h2 id="29.-Suggested-experiments">29. Suggested experiments<a class="anchor-link" href="#29.-Suggested-experiments">¶</a></h2><ol>
 <li>Compare MLP architectures <code>32-32</code>, <code>64-64-32</code>, and <code>128-128-64</code>.</li>
 <li>Remove Reynolds number and quantify the loss of accuracy.</li>
 <li>Train a single-output model for only $C_L$.</li>
@@ -14288,7 +14288,7 @@ $$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="29b.-Suggested-exercises-%E2%80%94-executed">29b. Suggested exercises — executed<a class="anchor-link" href="#29b.-Suggested-exercises-%E2%80%94-executed">¶</a></h1><p>All exercises reuse the data split, scaling rules and training settings of Sections 11–14 (tanh MLP, Adam $10^{-3}$, MSE, 15 % validation split, early stopping with patience 40, batch 32) unless the exercise changes them. Every configuration is trained with <strong>3 seeds</strong> and reported as mean ± standard deviation, because a single small-network run can vary noticeably. Tables and figures are saved in <code>exercise_results/</code>; the ensemble members of Exercise 7 are saved in <code>trained_models/exercises/</code>.</p>
+<h1 id="29b.-Suggested-experiments-%E2%80%94-executed">29b. Suggested experiments — executed<a class="anchor-link" href="#29b.-Suggested-experiments-%E2%80%94-executed">¶</a></h1><p>All experiments reuse the data split, scaling rules and training settings of Sections 11–14 (tanh MLP, Adam $10^{-3}$, MSE, 15 % validation split, early stopping with patience 40, batch 32) unless the experiment changes them. Every configuration is trained with <strong>3 seeds</strong> and reported as mean ± standard deviation, because a single small-network run can vary noticeably. Tables and figures are saved in <code>exercise_results/</code>; the ensemble members of Experiment 7 are saved in <code>trained_models/exercises/</code>.</p>
 </div>
 </div>
 </div>
@@ -14447,7 +14447,7 @@ $$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exercise-1-%E2%80%94-Architectures-32-32,-64-64-32,-128-128-64-(executed)">Exercise 1 — Architectures <code>32-32</code>, <code>64-64-32</code>, <code>128-128-64</code> <em>(executed)</em><a class="anchor-link" href="#Exercise-1-%E2%80%94-Architectures-32-32,-64-64-32,-128-128-64-(executed)">¶</a></h2>
+<h2 id="Experiment-1-%E2%80%94-Architectures-32-32,-64-64-32,-128-128-64-(executed)">Experiment 1 — Architectures <code>32-32</code>, <code>64-64-32</code>, <code>128-128-64</code> <em>(executed)</em><a class="anchor-link" href="#Experiment-1-%E2%80%94-Architectures-32-32,-64-64-32,-128-128-64-(executed)">¶</a></h2>
 </div>
 </div>
 </div>
@@ -14559,7 +14559,7 @@ $$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exercise-2-%E2%80%94-Remove-the-Reynolds-number-(executed)">Exercise 2 — Remove the Reynolds number <em>(executed)</em><a class="anchor-link" href="#Exercise-2-%E2%80%94-Remove-the-Reynolds-number-(executed)">¶</a></h2><p>The input becomes $(\alpha, m, p, t)$. Any accuracy lost is the part of the coefficients' variation that the network can only explain through $Re$; drag, being partly viscous, is expected to suffer more than lift.</p>
+<h2 id="Experiment-2-%E2%80%94-Remove-the-Reynolds-number-(executed)">Experiment 2 — Remove the Reynolds number <em>(executed)</em><a class="anchor-link" href="#Experiment-2-%E2%80%94-Remove-the-Reynolds-number-(executed)">¶</a></h2><p>The input becomes $(\alpha, m, p, t)$. Any accuracy lost is the part of the coefficients' variation that the network can only explain through $Re$; drag, being partly viscous, is expected to suffer more than lift.</p>
 </div>
 </div>
 </div>
@@ -14649,7 +14649,7 @@ $$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exercise-3-%E2%80%94-A-single-output-model-for-$C_L$-only-(executed)">Exercise 3 — A single-output model for $C_L$ only <em>(executed)</em><a class="anchor-link" href="#Exercise-3-%E2%80%94-A-single-output-model-for-$C_L$-only-(executed)">¶</a></h2><p>With two outputs, the shared hidden layers must serve both coefficients. A dedicated lift network removes that compromise; the comparison shows whether the shared representation helps or hinders lift.</p>
+<h2 id="Experiment-3-%E2%80%94-A-single-output-model-for-$C_L$-only-(executed)">Experiment 3 — A single-output model for $C_L$ only <em>(executed)</em><a class="anchor-link" href="#Experiment-3-%E2%80%94-A-single-output-model-for-$C_L$-only-(executed)">¶</a></h2><p>With two outputs, the shared hidden layers must serve both coefficients. A dedicated lift network removes that compromise; the comparison shows whether the shared representation helps or hinders lift.</p>
 </div>
 </div>
 </div>
@@ -14736,7 +14736,7 @@ $$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exercise-4-%E2%80%94-Scarce-data-regime-(executed)">Exercise 4 — Scarce-data regime <em>(executed)</em><a class="anchor-link" href="#Exercise-4-%E2%80%94-Scarce-data-regime-(executed)">¶</a></h2><p>Random subsets of 10 %, 25 %, 50 % and 100 % of the 378 training simulations are used (a different subset for each seed); the test set is unchanged.</p>
+<h2 id="Experiment-4-%E2%80%94-Scarce-data-regime-(executed)">Experiment 4 — Scarce-data regime <em>(executed)</em><a class="anchor-link" href="#Experiment-4-%E2%80%94-Scarce-data-regime-(executed)">¶</a></h2><p>Random subsets of 10 %, 25 %, 50 % and 100 % of the 378 training simulations are used (a different subset for each seed); the test set is unchanged.</p>
 </div>
 </div>
 </div>
@@ -14874,7 +14874,7 @@ $$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exercise-5-%E2%80%94-Extrapolation-in-Reynolds-number-and-angle-of-attack-(executed,-emulated)">Exercise 5 — Extrapolation in Reynolds number and angle of attack <em>(executed, emulated)</em><a class="anchor-link" href="#Exercise-5-%E2%80%94-Extrapolation-in-Reynolds-number-and-angle-of-attack-(executed,-emulated)">¶</a></h2><p>AirfRANS ships official extrapolation tasks, but their case lists live in the full dataset's <code>manifest.json</code>, which is not available here. We therefore <strong>emulate</strong> the idea with the 489 cases in the CSV:</p>
+<h2 id="Experiment-5-%E2%80%94-Extrapolation-in-Reynolds-number-and-angle-of-attack-(executed,-emulated)">Experiment 5 — Extrapolation in Reynolds number and angle of attack <em>(executed, emulated)</em><a class="anchor-link" href="#Experiment-5-%E2%80%94-Extrapolation-in-Reynolds-number-and-angle-of-attack-(executed,-emulated)">¶</a></h2><p>AirfRANS ships official extrapolation tasks, but their case lists live in the full dataset's <code>manifest.json</code>, which is not available here. We therefore <strong>emulate</strong> the idea with the 489 cases in the CSV:</p>
 <ul>
 <li><strong>Reynolds task:</strong> train on official-training cases with $3\le Re/10^6\le5$; test on (i) official-test cases inside that band (<em>interpolation</em>) and (ii) all cases outside it (<em>extrapolation</em>).</li>
 <li><strong>Angle task:</strong> the same with $-2.5^\circ\le\alpha\le12.5^\circ$.</li>
@@ -15022,7 +15022,7 @@ $$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exercise-6-%E2%80%94-Extend-to-the-five-digit-family-(requires-the-full-AirfRANS-dataset)">Exercise 6 — Extend to the five-digit family <em>(requires the full AirfRANS dataset)</em><a class="anchor-link" href="#Exercise-6-%E2%80%94-Extend-to-the-five-digit-family-(requires-the-full-AirfRANS-dataset)">¶</a></h2><p>Five-digit cases carry <strong>four</strong> geometry parameters in their names (versus three for four-digit), so the input becomes $(Re,\alpha,g_1,g_2,g_3,g_4)$ for that family, or a common encoding is needed if both families are mixed. The coefficient CSV supplied with the data contains only four-digit cases, so this exercise can only run where the full dataset (≈9.3 GB, Part A) is available. The cell below runs the extraction and training automatically if it finds the dataset, and otherwise reports what is missing.</p>
+<h2 id="Experiment-6-%E2%80%94-Extend-to-the-five-digit-family-(requires-the-full-AirfRANS-dataset)">Experiment 6 — Extend to the five-digit family <em>(requires the full AirfRANS dataset)</em><a class="anchor-link" href="#Experiment-6-%E2%80%94-Extend-to-the-five-digit-family-(requires-the-full-AirfRANS-dataset)">¶</a></h2><p>Five-digit cases carry <strong>four</strong> geometry parameters in their names (versus three for four-digit), so the input becomes $(Re,\alpha,g_1,g_2,g_3,g_4)$ for that family, or a common encoding is needed if both families are mixed. The coefficient CSV supplied with the data contains only four-digit cases, so this experiment can only run where the full dataset (≈9.3 GB, Part A) is available. The cell below runs the extraction and training automatically if it finds the dataset, and otherwise reports what is missing.</p>
 </div>
 </div>
 </div>
@@ -15076,7 +15076,7 @@ $$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exercise-7-%E2%80%94-Ensemble-of-MLPs-and-prediction-spread-as-an-uncertainty-indicator-(executed)">Exercise 7 — Ensemble of MLPs and prediction spread as an uncertainty indicator <em>(executed)</em><a class="anchor-link" href="#Exercise-7-%E2%80%94-Ensemble-of-MLPs-and-prediction-spread-as-an-uncertainty-indicator-(executed)">¶</a></h2><p>Five reference networks (seeds 0–4) are trained on the same data. The ensemble mean is the prediction and the standard deviation across members is the <strong>spread</strong>. Two checks: (a) on the test set, do cases with larger spread also have larger errors? (b) along a polar extended beyond the training angles ($-10^\circ$ to $20^\circ$, data cover about $-5^\circ$ to $15^\circ$), does the spread grow outside the data? The members are saved in <code>trained_models/exercises/</code>.</p>
+<h2 id="Experiment-7-%E2%80%94-Ensemble-of-MLPs-and-prediction-spread-as-an-uncertainty-indicator-(executed)">Experiment 7 — Ensemble of MLPs and prediction spread as an uncertainty indicator <em>(executed)</em><a class="anchor-link" href="#Experiment-7-%E2%80%94-Ensemble-of-MLPs-and-prediction-spread-as-an-uncertainty-indicator-(executed)">¶</a></h2><p>Five reference networks (seeds 0–4) are trained on the same data. The ensemble mean is the prediction and the standard deviation across members is the <strong>spread</strong>. Two checks: (a) on the test set, do cases with larger spread also have larger errors? (b) along a polar extended beyond the training angles ($-10^\circ$ to $20^\circ$, data cover about $-5^\circ$ to $15^\circ$), does the spread grow outside the data? The members are saved in <code>trained_models/exercises/</code>.</p>
 </div>
 </div>
 </div>
@@ -15318,7 +15318,7 @@ $$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Summary-of-the-executed-exercises">Summary of the executed exercises<a class="anchor-link" href="#Summary-of-the-executed-exercises">¶</a></h2><table>
+<h2 id="Summary-of-the-executed-experiments">Summary of the executed experiments<a class="anchor-link" href="#Summary-of-the-executed-experiments">¶</a></h2><table>
 <thead>
 <tr>
 <th>#</th>
