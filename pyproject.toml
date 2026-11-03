@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "airfoil-drl"
+version = "0.1.0"
+description = "Helpers extracted from the notebooks of airfoil-cfd-surrogate-drl: KS solver, thin-airfoil and surrogate gust environments, surrogate MLP, metrics."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+dependencies = [
+    "numpy",
+    "scipy",
+    "pandas",
+    "scikit-learn",
+    "gymnasium",
+]
+
+[project.optional-dependencies]
+# What the tests and the notebooks need on top of the core dependencies.
+test = ["pytest", "stable-baselines3", "torch", "tensorflow", "keras", "joblib", "matplotlib"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+filterwarnings = ["ignore::DeprecationWarning", "ignore::UserWarning"]
