@@ -1,0 +1,14 @@
+# Subset of requirements.txt needed to import src/airfoil_drl and run tests/ on Linux CPU.
+# Versions are the same pins as requirements.txt (the frozen macOS environment of the notebooks).
+numpy==2.5.3
+scipy==1.18.1
+pandas==3.0.6
+scikit-learn==1.8.0
+joblib==1.6.0
+matplotlib==3.11.2
+gymnasium==1.3.0
+stable-baselines3==2.9.0
+torch==2.14.1
+tensorflow==2.21.0
+keras==3.15.1
+pytest==9.2.0
